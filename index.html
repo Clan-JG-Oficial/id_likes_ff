@@ -17,11 +17,9 @@
                             pink: '#ff2d78',
                             pinkLight: '#ff6eb4',
                             pinkDark: '#cc1a5c',
-                            pinkGlow: '#ff2d7833',
                             gold: '#ffd700',
                             goldLight: '#ffe44d',
                             goldDark: '#ccac00',
-                            goldGlow: '#ffd70033',
                         },
                         dark: { 950: '#050505', 900: '#0a0a0a', 800: '#0f0f0f', 700: '#151515', 600: '#1e1e1e' }
                     }
@@ -34,7 +32,6 @@
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #2a1525; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #3d1f38; }
-
         body { background: #050505; font-family: 'Inter', sans-serif; }
 
         .hero-glow {
@@ -42,20 +39,11 @@
                 radial-gradient(ellipse 500px 250px at 30% 0%, rgba(255,45,120,0.1) 0%, transparent 70%),
                 radial-gradient(ellipse 400px 200px at 70% 0%, rgba(255,215,0,0.06) 0%, transparent 70%);
         }
-
         .card-glow:hover {
             box-shadow: 0 0 25px rgba(255,45,120,0.07), 0 0 50px rgba(255,215,0,0.03);
         }
-
-        .card-inactive {
-            opacity: 0.4;
-            filter: grayscale(0.7);
-        }
-        .card-inactive:hover {
-            opacity: 0.55;
-            filter: grayscale(0.4);
-            box-shadow: none;
-        }
+        .card-inactive { opacity: 0.4; filter: grayscale(0.7); }
+        .card-inactive:hover { opacity: 0.55; filter: grayscale(0.4); box-shadow: none; }
 
         .copy-btn {
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -68,7 +56,6 @@
             background: linear-gradient(135deg, rgba(255,45,120,0.25), rgba(255,215,0,0.15));
         }
         .copy-btn:active { transform: scale(0.95); }
-
         .copy-btn-copied {
             background: linear-gradient(135deg, rgba(255,215,0,0.25), rgba(255,215,0,0.15)) !important;
             border-color: rgba(255,215,0,0.4) !important;
@@ -77,32 +64,15 @@
 
         .toast-enter { animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .toast-exit { animation: toastOut 0.3s ease-in forwards; }
-
-        @keyframes toastIn {
-            from { transform: translateY(20px) scale(0.9); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
-        }
-        @keyframes toastOut {
-            from { transform: translateY(0) scale(1); opacity: 1; }
-            to { transform: translateY(-10px) scale(0.95); opacity: 0; }
-        }
-
-        @keyframes fadeInUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+        @keyframes toastIn { from { transform: translateY(20px) scale(0.9); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+        @keyframes toastOut { from { transform: translateY(0) scale(1); opacity: 1; } to { transform: translateY(-10px) scale(0.95); opacity: 0; } }
+        @keyframes fadeInUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .animate-card { animation: fadeInUp 0.5s ease-out forwards; opacity: 0; }
 
-        @keyframes pulse-neon {
-            0%, 100% { opacity: 0.5; box-shadow: 0 0 4px rgba(255,45,120,0.3); }
-            50% { opacity: 1; box-shadow: 0 0 8px rgba(255,45,120,0.6); }
-        }
+        @keyframes pulse-neon { 0%, 100% { opacity: 0.5; box-shadow: 0 0 4px rgba(255,45,120,0.3); } 50% { opacity: 1; box-shadow: 0 0 8px rgba(255,45,120,0.6); } }
         .pulse-neon { animation: pulse-neon 2s ease-in-out infinite; }
 
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
         .text-shimmer {
             background: linear-gradient(90deg, #ff2d78, #ffd700, #ff6eb4, #ffd700, #ff2d78);
             background-size: 200% auto;
@@ -116,55 +86,32 @@
             box-shadow: 0 0 0 2px rgba(255,45,120,0.25), 0 0 20px rgba(255,45,120,0.08);
             border-color: rgba(255,45,120,0.3) !important;
         }
-
         .stat-card {
             background: linear-gradient(135deg, rgba(255,45,120,0.05) 0%, rgba(255,215,0,0.03) 100%);
             border: 1px solid rgba(255,45,120,0.1);
         }
-
         .no-results { animation: fadeInUp 0.4s ease-out forwards; }
-
         .copied-flash { animation: flash 0.4s ease-out; }
-        @keyframes flash {
-            0% { background: rgba(255,215,0,0.15); }
-            100% { background: transparent; }
-        }
+        @keyframes flash { 0% { background: rgba(255,215,0,0.15); } 100% { background: transparent; } }
 
         .filter-active {
             background: linear-gradient(135deg, rgba(255,45,120,0.18), rgba(255,215,0,0.1)) !important;
             border-color: rgba(255,45,120,0.3) !important;
             color: #ff6eb4 !important;
         }
-
         .badge-pink {
             background: linear-gradient(135deg, rgba(255,45,120,0.12), rgba(255,215,0,0.06));
             border: 1px solid rgba(255,45,120,0.2);
         }
-
-        .header-gradient {
-            background: linear-gradient(135deg, #ff2d78, #ff6eb4);
-        }
-
+        .header-gradient { background: linear-gradient(135deg, #ff2d78, #ff6eb4); }
         .num-badge {
             background: linear-gradient(135deg, rgba(255,45,120,0.15), rgba(255,215,0,0.08));
             border: 1px solid rgba(255,45,120,0.2);
         }
-
-        .num-badge-inactive {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .card-border {
-            border: 1px solid rgba(255,45,120,0.06);
-        }
-        .card-border:hover {
-            border-color: rgba(255,45,120,0.2);
-        }
-        .card-border-inactive {
-            border: 1px solid rgba(255,255,255,0.03);
-        }
-
+        .num-badge-inactive { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
+        .card-border { border: 1px solid rgba(255,45,120,0.06); }
+        .card-border:hover { border-color: rgba(255,45,120,0.2); }
+        .card-border-inactive { border: 1px solid rgba(255,255,255,0.03); }
         .copy-all-btn {
             background: linear-gradient(135deg, rgba(255,45,120,0.15), rgba(255,215,0,0.1));
             border: 1px solid rgba(255,45,120,0.25);
@@ -173,26 +120,25 @@
             background: linear-gradient(135deg, rgba(255,45,120,0.25), rgba(255,215,0,0.15));
             box-shadow: 0 0 20px rgba(255,45,120,0.15);
         }
-
         .float-btn {
             background: linear-gradient(135deg, #ff2d78, #cc1a5c);
             box-shadow: 0 4px 20px rgba(255,45,120,0.35);
         }
+        .id-label { color: #ff6eb4; }
+        .id-text { color: #fff; }
 
-        .id-label {
-            color: #ff6eb4;
+        .date-badge {
+            background: linear-gradient(135deg, rgba(255,215,0,0.12), rgba(255,45,120,0.06));
+            border: 1px solid rgba(255,215,0,0.2);
         }
-        .id-text {
-            color: #fff;
+        .date-divider {
+            background: linear-gradient(90deg, transparent, rgba(255,45,120,0.2), rgba(255,215,0,0.2), transparent);
         }
     </style>
 </head>
 <body class="text-white min-h-screen">
 
-    <!-- Toast Container -->
     <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
-
-    <!-- Hero Glow -->
     <div class="hero-glow fixed top-0 left-0 w-full h-80 pointer-events-none z-0"></div>
 
     <!-- Header -->
@@ -213,19 +159,18 @@
                     Copiar todos los IDs
                 </button>
                 <div class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
-                    <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full pulse-neon" style="animation-name: pulse-neon;"></div>
+                    <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full pulse-neon"></div>
                     <span class="text-[10px] font-semibold text-emerald-400 uppercase tracking-wider">Activo</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pb-20">
 
-        <!-- Hero Section -->
-        <section class="pt-12 pb-8 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 badge-pink rounded-full mb-6">
+        <!-- Hero -->
+        <section class="pt-12 pb-6 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 badge-pink rounded-full mb-5">
                 <iconify-icon icon="mdi:gamepad-variant" class="text-neon-pinkLight text-sm"></iconify-icon>
                 <span class="text-[11px] font-semibold text-neon-pinkLight uppercase tracking-wider">Grupo de WhatsApp</span>
             </div>
@@ -233,22 +178,31 @@
                 Squad <span class="text-shimmer">Likes</span> Free Fire
             </h2>
             <p class="text-neutral-400 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-                Lista de IDs del squad. Toca <strong class="text-neon-pinkLight">Copiar ID</strong> y pégalo directo en Free Fire 🎮
+                Toca <strong class="text-neon-pinkLight">Copiar ID</strong> y pégalo directo en Free Fire 🎮
             </p>
+        </section>
+
+        <!-- Date Banner -->
+        <section class="mb-8 flex justify-center">
+            <div class="date-badge inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full">
+                <iconify-icon icon="mdi:calendar-star" class="text-neon-gold text-base"></iconify-icon>
+                <span class="text-xs font-bold text-neon-gold tracking-wide">Última actualización: 10 Abril 2025</span>
+                <span class="text-[10px] text-neon-pinkLight font-semibold bg-neon-pink/10 px-2 py-0.5 rounded-full">NUEVA</span>
+            </div>
         </section>
 
         <!-- Stats -->
         <section class="grid grid-cols-3 gap-3 sm:gap-4 mb-8 max-w-lg mx-auto">
             <div class="stat-card rounded-xl p-3 sm:p-4 text-center">
-                <p class="text-xl sm:text-2xl font-black text-neon-pinkLight">28</p>
+                <p class="text-xl sm:text-2xl font-black text-neon-pinkLight">31</p>
                 <p class="text-[10px] sm:text-xs text-neutral-500 font-medium mt-1">Participantes</p>
             </div>
             <div class="stat-card rounded-xl p-3 sm:p-4 text-center">
-                <p class="text-xl sm:text-2xl font-black text-red-400">3</p>
+                <p class="text-xl sm:text-2xl font-black text-red-400">4</p>
                 <p class="text-[10px] sm:text-xs text-neutral-500 font-medium mt-1">No participan</p>
             </div>
             <div class="stat-card rounded-xl p-3 sm:p-4 text-center">
-                <p class="text-xl sm:text-2xl font-black text-neon-gold">31</p>
+                <p class="text-xl sm:text-2xl font-black text-neon-gold">35</p>
                 <p class="text-[10px] sm:text-xs text-neutral-500 font-medium mt-1">Total</p>
             </div>
         </section>
@@ -257,13 +211,8 @@
         <section class="mb-8 max-w-md mx-auto">
             <div class="relative">
                 <iconify-icon icon="mdi:magnify" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-500 text-lg"></iconify-icon>
-                <input
-                    id="searchInput"
-                    type="text"
-                    placeholder="Buscar por nombre o ID..."
-                    oninput="filtrarMiembros()"
-                    class="w-full bg-dark-800 border border-white/[0.06] rounded-xl pl-10 pr-10 py-3 text-sm text-white placeholder-neutral-500 outline-none search-glow transition-all duration-200"
-                >
+                <input id="searchInput" type="text" placeholder="Buscar por nombre o ID..." oninput="filtrarMiembros()"
+                    class="w-full bg-dark-800 border border-white/[0.06] rounded-xl pl-10 pr-10 py-3 text-sm text-white placeholder-neutral-500 outline-none search-glow transition-all duration-200">
                 <button id="clearBtn" onclick="limpiarBusqueda()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neon-pinkLight transition-colors cursor-pointer">
                     <iconify-icon icon="mdi:close-circle" class="text-lg"></iconify-icon>
                 </button>
@@ -272,15 +221,9 @@
 
         <!-- Filter Tabs -->
         <section class="flex justify-center gap-2 mb-8">
-            <button onclick="setFilter('todos')" id="filterTodos" class="filter-btn filter-active px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer border">
-                Todos (31)
-            </button>
-            <button onclick="setFilter('activos')" id="filterActivos" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer bg-dark-700 text-neutral-400 border border-white/[0.04] hover:border-white/10">
-                Participantes (28)
-            </button>
-            <button onclick="setFilter('inactivos')" id="filterInactivos" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer bg-dark-700 text-neutral-400 border border-white/[0.04] hover:border-white/10">
-                No participan (3)
-            </button>
+            <button onclick="setFilter('todos')" id="filterTodos" class="filter-btn filter-active px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer border">Todos (35)</button>
+            <button onclick="setFilter('activos')" id="filterActivos" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer bg-dark-700 text-neutral-400 border border-white/[0.04] hover:border-white/10">Participantes (31)</button>
+            <button onclick="setFilter('inactivos')" id="filterInactivos" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer bg-dark-700 text-neutral-400 border border-white/[0.04] hover:border-white/10">No participan (4)</button>
         </section>
 
         <!-- Cards Grid -->
@@ -292,13 +235,11 @@
             <p class="text-neutral-400 font-semibold">No se encontraron resultados</p>
             <p class="text-neutral-600 text-sm mt-1">Intenta con otro nombre o ID</p>
         </div>
-
     </main>
 
-    <!-- Footer -->
     <footer class="relative z-10 border-t border-white/[0.04] py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p class="text-neutral-600 text-xs">Squad Likes — Grupo WhatsApp</p>
+            <p class="text-neutral-600 text-xs">Squad Likes — Grupo WhatsApp · Actualizado 10 Abril 2025</p>
             <div class="flex items-center gap-2">
                 <iconify-icon icon="mdi:whatsapp" class="text-neon-pinkLight/40 text-lg"></iconify-icon>
                 <span class="text-neutral-600 text-xs">IDs recopilados del grupo</span>
@@ -306,7 +247,6 @@
         </div>
     </footer>
 
-    <!-- Mobile Floating Button -->
     <button onclick="copiarTodos()" class="sm:hidden fixed bottom-6 left-6 z-40 w-14 h-14 float-btn rounded-2xl flex items-center justify-center active:scale-95 transition-transform cursor-pointer">
         <iconify-icon icon="mdi:content-copy" class="text-white text-xl"></iconify-icon>
     </button>
@@ -322,28 +262,32 @@ const miembros = [
     { num: 7, nombre: "Karol g", telefono: "+52 877 116 3778", id: "9176025655", activo: true },
     { num: 8, nombre: "⠑⠍⠊⠇⠊⠁✧.*•", telefono: "+56 9 9421 5848", id: "302083834", activo: true },
     { num: 9, nombre: "ㅤkckbuttøwski", telefono: "+51 932 215 308", id: "891489339", activo: true },
-    { num: 10, nombre: "ㅤCrydannn", telefono: "+51 928 208 936", id: "604856361", activo: true },
-    { num: 11, nombre: "ʙʀʏᴀᴍ ᴘ ᴄᴛᴍ", telefono: "+51 989 037 773", id: "5561518480", activo: true },
-    { num: 12, nombre: "Mendoza $_$", telefono: "+52 311 373 1853", id: "501348500", activo: true },
-    { num: 13, nombre: "ᴍᴀᴛʜɪᴀsㅤ〆", telefono: "+57 301 3532902", id: "867581043", activo: true },
-    { num: 14, nombre: "xManobal", telefono: "+52 746 113 9783", id: "4704996441", activo: true },
-    { num: 15, nombre: "FIX Marcos", telefono: "+593 98 519 1366", id: "1821061061", activo: true },
-    { num: 16, nombre: "ᴮᴳㅤFufiㅤʚɞ", telefono: "+51 929 543 213", id: "2138614483", activo: true },
-    { num: 17, nombre: "¿ᴋɪʟʟᴇʀ.ᴇxᴇ?", telefono: "+57 320 8576432", id: "629940372", activo: true },
-    { num: 18, nombre: "Sxㅤ┋ᴋɪɴɢㅤヅ", telefono: "+58 414-9190472", id: "2207548208", activo: true },
-    { num: 19, nombre: "И7ㅤCHRISS  あ", telefono: "+1 (612) 403-0386", id: "4829294057", activo: true },
-    { num: 20, nombre: "꧁Ъσห¡тคツ꧂ღ", telefono: "+51 939 804 920", id: "3170516432", activo: true },
-    { num: 21, nombre: "〆ㅤLifeㅤᴳᵒᵒᵈ", telefono: "+57 313 4336554", id: "1820390528", activo: true },
-    { num: 22, nombre: "EW BOOS⁵⁰⁵", telefono: "+505 8201 6589", id: "1038645360", activo: true },
-    { num: 23, nombre: "YER4xRIKc44R", telefono: "+52 664 115 9744", id: "878709090", activo: true },
-    { num: 24, nombre: "CHEVI YT OF", telefono: "+502 5732 2128", id: "7233564458", activo: true },
-    { num: 25, nombre: "S21' Yair30$", telefono: "+54 9 11 6249-6237", id: "820630749", activo: true },
-    { num: 26, nombre: "Postmalone", telefono: "+593 97 880 1383", id: "3598153913", activo: true },
-    { num: 27, nombre: "Fxck | 〆505", telefono: "+51 904 283 885", id: "4199767277", activo: true },
-    { num: 28, nombre: "Chino antrax", telefono: "+504 9911-6249", id: "6909228461", activo: true },
-    { num: 29, nombre: "HN MELVIN", telefono: "+504 9624-3435", id: null, activo: false },
-    { num: 30, nombre: "im' Yordan7¿", telefono: "+51 997 097 767", id: null, activo: false },
-    { num: 31, nombre: "ﾒƁคstịuﾒ", telefono: "+56 9 6424 1398", id: null, activo: false },
+    { num: 10, nombre: "ʙʀʏᴀᴍ ᴘ ᴄᴛᴍ", telefono: "+51 989 037 773", id: "5561518480", activo: true },
+    { num: 11, nombre: "ᴍᴀᴛʜɪᴀsㅤ〆", telefono: "+57 301 3532902", id: "867581043", activo: true },
+    { num: 12, nombre: "xManobal", telefono: "+52 746 113 9783", id: "4704996441", activo: true },
+    { num: 13, nombre: "FIX Marcos", telefono: "+593 98 519 1366", id: "1821061061", activo: true },
+    { num: 14, nombre: "ᴮᴳㅤFufiㅤʚɞ", telefono: "+51 929 543 213", id: "2138614483", activo: true },
+    { num: 15, nombre: "¿ᴋɪʟʟᴇʀ.ᴇxᴇ?", telefono: "+57 320 8576432", id: "629940372", activo: true },
+    { num: 16, nombre: "Sxㅤ┋ᴋɪɴɢㅤヅ", telefono: "+58 414-9190472", id: "2207548208", activo: true },
+    { num: 17, nombre: "И7ㅤCHRISS  あ", telefono: "+1 (612) 403-0386", id: "4829294057", activo: true },
+    { num: 18, nombre: "꧁Ъσห¡тคツ꧂ღ", telefono: "+51 939 804 920", id: "3170516432", activo: true },
+    { num: 19, nombre: "〆ㅤLifeㅤᴳᵒᵒᵈ", telefono: "+57 313 4336554", id: "1820390528", activo: true },
+    { num: 20, nombre: "EW BOOS⁵⁰⁵", telefono: "+505 8201 6589", id: "1038645360", activo: true },
+    { num: 21, nombre: "YER4xRIKc44R", telefono: "+52 664 115 9744", id: "878709090", activo: true },
+    { num: 22, nombre: "CHEVI YT OF", telefono: "+502 5732 2128", id: "7233564458", activo: true },
+    { num: 23, nombre: "S21' Yair30$", telefono: "+54 9 11 6249-6237", id: "820630749", activo: true },
+    { num: 24, nombre: "Postmalone", telefono: "+593 97 880 1383", id: "3598153913", activo: true },
+    { num: 25, nombre: "Fxck | 〆505", telefono: "+51 904 283 885", id: "4199767277", activo: true },
+    { num: 26, nombre: "Marcos    18y", telefono: "+52 81 4187 3885", id: "2056359257", activo: true, nuevo: true },
+    { num: 27, nombre: "YILBER", telefono: "+57 311 2751824", id: "1980613129", activo: true, nuevo: true },
+    { num: 28, nombre: "Thabo", telefono: "+52 33 3307 6944", id: "1364962265", activo: true, nuevo: true },
+    { num: 29, nombre: "Ꭺᴜʀᴀメᴠ!Mx☯︎", telefono: "+502 4282 1424", id: "9449106639", activo: true, nuevo: true },
+    { num: 30, nombre: "Rnz Frxn", telefono: "+51 910 406 332", id: "1848903797", activo: true, nuevo: true },
+    { num: 31, nombre: "∞꒒ꄲꋊꏂ꒒ꌦᴳ", telefono: "+52 324 100 0809", id: "1960206230", activo: true, nuevo: true },
+    { num: 0, nombre: "Crydannn", telefono: "+51 928 208 936", id: null, activo: false },
+    { num: 0, nombre: "Mendoza $_$", telefono: "+52 311 373 1853", id: null, activo: false },
+    { num: 0, nombre: "Chino antrax", telefono: "+504 9911-6249", id: null, activo: false },
+    { num: 0, nombre: "im' Yordan7¿", telefono: "+51 997 097 767", id: null, activo: false },
 ];
 
 let currentFilter = 'todos';
@@ -357,13 +301,14 @@ function renderCards(filteredMembers) {
         noResults.classList.remove('hidden');
         return;
     }
-
     noResults.classList.add('hidden');
 
     grid.innerHTML = filteredMembers.map((m, i) => {
-        const delay = Math.min(i * 40, 600);
+        const delay = Math.min(i * 35, 800);
         const inactiveClass = m.activo ? '' : 'card-inactive';
         const borderClass = m.activo ? 'card-border' : 'card-border-inactive';
+
+        const nuevoBadge = m.nuevo ? `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider" style="background:rgba(255,215,0,0.12);color:#ffd700;border:1px solid rgba(255,215,0,0.2);">Nuevo</span>` : '';
 
         const idSection = m.activo ? `
             <div class="flex items-center justify-between gap-2 mt-3">
@@ -383,15 +328,21 @@ function renderCards(filteredMembers) {
             </div>
         `;
 
+        const numDisplay = m.activo ? m.num : '✕';
+        const numColor = m.activo ? 'text-neon-pinkLight' : 'text-neutral-600';
+
         return `
             <div class="animate-card ${inactiveClass} bg-dark-800/80 ${borderClass} rounded-2xl p-4 sm:p-5 transition-all duration-300 card-glow" style="animation-delay: ${delay}ms" data-nombre="${m.nombre.toLowerCase()}" data-id="${m.id || ''}" data-activo="${m.activo}">
                 <div class="flex items-start justify-between gap-3">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-10 h-10 rounded-xl ${m.activo ? 'num-badge' : 'num-badge-inactive'} flex items-center justify-center flex-shrink-0">
-                            <span class="text-sm font-black ${m.activo ? 'text-neon-pinkLight' : 'text-neutral-600'}">${m.num}</span>
+                            <span class="text-sm font-black ${numColor}">${numDisplay}</span>
                         </div>
                         <div class="min-w-0">
-                            <h3 class="text-sm font-bold text-white truncate leading-tight">${m.nombre}</h3>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <h3 class="text-sm font-bold text-white truncate leading-tight">${m.nombre}</h3>
+                                ${nuevoBadge}
+                            </div>
                             <div class="flex items-center gap-1.5 mt-1">
                                 <iconify-icon icon="mdi:phone" class="text-neutral-600 text-[11px]"></iconify-icon>
                                 <span class="text-[11px] text-neutral-500 font-mono truncate">${m.telefono}</span>
@@ -414,90 +365,42 @@ function copiarID(id, btnElement) {
         const originalHTML = btnElement.innerHTML;
         btnElement.innerHTML = '<iconify-icon icon="mdi:check" class="text-sm"></iconify-icon> ¡Copiado!';
         btnElement.classList.add('copy-btn-copied');
-
         const card = btnElement.closest('[data-nombre]');
-        if (card) {
-            card.classList.add('copied-flash');
-            setTimeout(() => card.classList.remove('copied-flash'), 400);
-        }
-
-        setTimeout(() => {
-            btnElement.innerHTML = originalHTML;
-            btnElement.classList.remove('copy-btn-copied');
-        }, 1500);
-
+        if (card) { card.classList.add('copied-flash'); setTimeout(() => card.classList.remove('copied-flash'), 400); }
+        setTimeout(() => { btnElement.innerHTML = originalHTML; btnElement.classList.remove('copy-btn-copied'); }, 1500);
         showToast(`ID ${id} copiado ✓`, 'success');
     }).catch(() => {
-        const textarea = document.createElement('textarea');
-        textarea.value = id;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
+        const ta = document.createElement('textarea'); ta.value = id; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
         showToast(`ID ${id} copiado ✓`, 'success');
     });
 }
 
 function copiarTodos() {
     const ids = miembros.filter(m => m.activo).map(m => m.id).join('\n');
-    navigator.clipboard.writeText(ids).then(() => {
-        showToast('28 IDs copiados al portapapeles ✓', 'success');
-    }).catch(() => {
-        const textarea = document.createElement('textarea');
-        textarea.value = ids;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        showToast('28 IDs copiados al portapapeles ✓', 'success');
+    navigator.clipboard.writeText(ids).then(() => { showToast('31 IDs copiados al portapapeles ✓', 'success'); }).catch(() => {
+        const ta = document.createElement('textarea'); ta.value = ids; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        showToast('31 IDs copiados al portapapeles ✓', 'success');
     });
 }
 
-function showToast(message, type = 'success') {
+function showToast(message, type) {
     const container = document.getElementById('toastContainer');
     const toast = document.createElement('div');
-
     toast.className = 'toast-enter pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl backdrop-blur-xl shadow-2xl max-w-sm';
     toast.style.cssText = 'background: linear-gradient(135deg, rgba(255,45,120,0.12), rgba(255,215,0,0.08)); border: 1px solid rgba(255,45,120,0.2); color: #ff6eb4;';
-
-    toast.innerHTML = `
-        <iconify-icon icon="mdi:check-circle" class="text-lg flex-shrink-0" style="color:#ffd700;"></iconify-icon>
-        <span class="text-xs font-semibold">${message}</span>
-    `;
-
+    toast.innerHTML = `<iconify-icon icon="mdi:check-circle" class="text-lg flex-shrink-0" style="color:#ffd700;"></iconify-icon><span class="text-xs font-semibold">${message}</span>`;
     container.appendChild(toast);
-
-    setTimeout(() => {
-        toast.classList.remove('toast-enter');
-        toast.classList.add('toast-exit');
-        setTimeout(() => toast.remove(), 300);
-    }, 2500);
+    setTimeout(() => { toast.classList.remove('toast-enter'); toast.classList.add('toast-exit'); setTimeout(() => toast.remove(), 300); }, 2500);
 }
 
 function filtrarMiembros() {
     const query = document.getElementById('searchInput').value.toLowerCase().trim();
-    const clearBtn = document.getElementById('clearBtn');
-
-    clearBtn.classList.toggle('hidden', query === '');
-
+    document.getElementById('clearBtn').classList.toggle('hidden', query === '');
     const filtered = miembros.filter(m => {
-        const matchSearch = query === '' ||
-            m.nombre.toLowerCase().includes(query) ||
-            (m.id && m.id.includes(query)) ||
-            m.telefono.includes(query);
-
-        const matchFilter =
-            currentFilter === 'todos' ||
-            (currentFilter === 'activos' && m.activo) ||
-            (currentFilter === 'inactivos' && !m.activo);
-
-        return matchSearch && matchFilter;
+        const ms = query === '' || m.nombre.toLowerCase().includes(query) || (m.id && m.id.includes(query)) || m.telefono.includes(query);
+        const mf = currentFilter === 'todos' || (currentFilter === 'activos' && m.activo) || (currentFilter === 'inactivos' && !m.activo);
+        return ms && mf;
     });
-
     renderCards(filtered);
 }
 
@@ -509,18 +412,9 @@ function limpiarBusqueda() {
 
 function setFilter(filter) {
     currentFilter = filter;
-
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('filter-active');
-        btn.classList.add('bg-dark-700', 'text-neutral-400');
-        btn.style.borderColor = 'rgba(255,255,255,0.04)';
-    });
-
-    const id = 'filter' + filter.charAt(0).toUpperCase() + filter.slice(1);
-    const activeBtn = document.getElementById(id);
-    activeBtn.classList.add('filter-active');
-    activeBtn.classList.remove('bg-dark-700', 'text-neutral-400');
-
+    document.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('filter-active'); b.classList.add('bg-dark-700', 'text-neutral-400'); b.style.borderColor = 'rgba(255,255,255,0.04)'; });
+    const btn = document.getElementById('filter' + filter.charAt(0).toUpperCase() + filter.slice(1));
+    btn.classList.add('filter-active'); btn.classList.remove('bg-dark-700', 'text-neutral-400');
     filtrarMiembros();
 }
 
