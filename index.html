@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📋 Squad Likes Free Fire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        neon: {
+                            pink: '#ff2d78',
+                            pinkLight: '#ff6eb4',
+                            pinkDark: '#cc1a5c',
+                            pinkGlow: '#ff2d7833',
+                            gold: '#ffd700',
+                            goldLight: '#ffe44d',
+                            goldDark: '#ccac00',
+                            goldGlow: '#ffd70033',
+                        },
+                        dark: { 950: '#050505', 900: '#0a0a0a', 800: '#0f0f0f', 700: '#151515', 600: '#1e1e1e' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #2a1525; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3d1f38; }
+
+        body { background: #050505; font-family: 'Inter', sans-serif; }
+
+        .hero-glow {
+            background:
+                radial-gradient(ellipse 500px 250px at 30% 0%, rgba(255,45,120,0.1) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 200px at 70% 0%, rgba(255,215,0,0.06) 0%, transparent 70%);
+        }
+
+        .card-glow:hover {
+            box-shadow: 0 0 25px rgba(255,45,120,0.07), 0 0 50px rgba(255,215,0,0.03);
+        }
+
+        .card-inactive {
+            opacity: 0.4;
+            filter: grayscale(0.7);
+        }
+        .card-inactive:hover {
+            opacity: 0.55;
+            filter: grayscale(0.4);
+            box-shadow: none;
+        }
+
+        .copy-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, rgba(255,45,120,0.15), rgba(255,215,0,0.1));
+            border: 1px solid rgba(255,45,120,0.25);
+        }
+        .copy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 18px rgba(255,45,120,0.25), 0 0 40px rgba(255,215,0,0.08);
+            background: linear-gradient(135deg, rgba(255,45,120,0.25), rgba(255,215,0,0.15));
+        }
+        .copy-btn:active { transform: scale(0.95); }
+
+        .copy-btn-copied {
+            background: linear-gradient(135deg, rgba(255,215,0,0.25), rgba(255,215,0,0.15)) !important;
+            border-color: rgba(255,215,0,0.4) !important;
+            color: #ffd700 !important;
+        }
+
+        .toast-enter { animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .toast-exit { animation: toastOut 0.3s ease-in forwards; }
+
+        @keyframes toastIn {
+            from { transform: translateY(20px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        @keyframes toastOut {
+            from { transform: translateY(0) scale(1); opacity: 1; }
+            to { transform: translateY(-10px) scale(0.95); opacity: 0; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-card { animation: fadeInUp 0.5s ease-out forwards; opacity: 0; }
+
+        @keyframes pulse-neon {
+            0%, 100% { opacity: 0.5; box-shadow: 0 0 4px rgba(255,45,120,0.3); }
+            50% { opacity: 1; box-shadow: 0 0 8px rgba(255,45,120,0.6); }
+        }
+        .pulse-neon { animation: pulse-neon 2s ease-in-out infinite; }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .text-shimmer {
+            background: linear-gradient(90deg, #ff2d78, #ffd700, #ff6eb4, #ffd700, #ff2d78);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .search-glow:focus {
+            box-shadow: 0 0 0 2px rgba(255,45,120,0.25), 0 0 20px rgba(255,45,120,0.08);
+            border-color: rgba(255,45,120,0.3) !important;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255,45,120,0.05) 0%, rgba(255,215,0,0.03) 100%);
+            border: 1px solid rgba(255,45,120,0.1);
+        }
+
+        .no-results { animation: fadeInUp 0.4s ease-out forwards; }
+
+        .copied-flash { animation: flash 0.4s ease-out; }
+        @keyframes flash {
+            0% { background: rgba(255,215,0,0.15); }
+            100% { background: transparent; }
+        }
+
+        .filter-active {
+            background: linear-gradient(135deg, rgba(255,45,120,0.18), rgba(255,215,0,0.1)) !important;
+            border-color: rgba(255,45,120,0.3) !important;
+            color: #ff6eb4 !important;
+        }
+
+        .badge-pink {
+            background: linear-gradient(135deg, rgba(255,45,120,0.12), rgba(255,215,0,0.06));
+            border: 1px solid rgba(255,45,120,0.2);
+        }
+
+        .header-gradient {
+            background: linear-gradient(135deg, #ff2d78, #ff6eb4);
+        }
+
+        .num-badge {
+            background: linear-gradient(135deg, rgba(255,45,120,0.15), rgba(255,215,0,0.08));
+            border: 1px solid rgba(255,45,120,0.2);
+        }
+
+        .num-badge-inactive {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .card-border {
+            border: 1px solid rgba(255,45,120,0.06);
+        }
+        .card-border:hover {
+            border-color: rgba(255,45,120,0.2);
+        }
+        .card-border-inactive {
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .copy-all-btn {
+            background: linear-gradient(135deg, rgba(255,45,120,0.15), rgba(255,215,0,0.1));
+            border: 1px solid rgba(255,45,120,0.25);
+        }
+        .copy-all-btn:hover {
+            background: linear-gradient(135deg, rgba(255,45,120,0.25), rgba(255,215,0,0.15));
+            box-shadow: 0 0 20px rgba(255,45,120,0.15);
+        }
+
+        .float-btn {
+            background: linear-gradient(135deg, #ff2d78, #cc1a5c);
+            box-shadow: 0 4px 20px rgba(255,45,120,0.35);
+        }
+
+        .id-label {
+            color: #ff6eb4;
+        }
+        .id-text {
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Hero Glow -->
+    <div class="hero-glow fixed top-0 left-0 w-full h-80 pointer-events-none z-0"></div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 backdrop-blur-xl bg-dark-950/80 border-b border-white/[0.04]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg header-gradient flex items-center justify-center shadow-lg" style="box-shadow: 0 4px 15px rgba(255,45,120,0.3);">
+                    <iconify-icon icon="mdi:fire" class="text-white text-lg"></iconify-icon>
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold tracking-tight text-white">Free Fire Squad</h1>
+                    <p class="text-[10px] text-neutral-500 font-medium">Likes Collector</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="copiarTodos()" class="hidden sm:flex items-center gap-2 px-4 py-2 copy-all-btn rounded-lg text-neon-pinkLight text-xs font-semibold transition-all duration-200 cursor-pointer">
+                    <iconify-icon icon="mdi:content-copy" class="text-sm"></iconify-icon>
+                    Copiar todos los IDs
+                </button>
+                <div class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+                    <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full pulse-neon" style="animation-name: pulse-neon;"></div>
+                    <span class="text-[10px] font-semibold text-emerald-400 uppercase tracking-wider">Activo</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pb-20">
+
+        <!-- Hero Section -->
+        <section class="pt-12 pb-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 badge-pink rounded-full mb-6">
+                <iconify-icon icon="mdi:gamepad-variant" class="text-neon-pinkLight text-sm"></iconify-icon>
+                <span class="text-[11px] font-semibold text-neon-pinkLight uppercase tracking-wider">Grupo de WhatsApp</span>
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-black tracking-tighter text-white mb-4">
+                Squad <span class="text-shimmer">Likes</span> Free Fire
+            </h2>
+            <p class="text-neutral-400 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                Lista de IDs del squad. Toca <strong class="text-neon-pinkLight">Copiar ID</strong> y pégalo directo en Free Fire 🎮
+            </p>
+        </section>
+
+        <!-- Stats -->
+        <section class="grid grid-cols-3 gap-3 sm:gap-4 mb-8 max-w-lg mx-auto">
+            <div class="stat-card rounded-xl p-3 sm:p-4 text-center">
+                <p class="text-xl sm:text-2xl font-black text-neon-pinkLight">28</p>
+                <p class="text-[10px] sm:text-xs text-neutral-500 font-medium mt-1">Participantes</p>
+            </div>
+            <div class="stat-card rounded-xl p-3 sm:p-4 text-center">
+                <p class="text-xl sm:text-2xl font-black text-red-400">3</p>
+                <p class="text-[10px] sm:text-xs text-neutral-500 font-medium mt-1">No participan</p>
+            </div>
+            <div class="stat-card rounded-xl p-3 sm:p-4 text-center">
+                <p class="text-xl sm:text-2xl font-black text-neon-gold">31</p>
+                <p class="text-[10px] sm:text-xs text-neutral-500 font-medium mt-1">Total</p>
+            </div>
+        </section>
+
+        <!-- Search -->
+        <section class="mb-8 max-w-md mx-auto">
+            <div class="relative">
+                <iconify-icon icon="mdi:magnify" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-500 text-lg"></iconify-icon>
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Buscar por nombre o ID..."
+                    oninput="filtrarMiembros()"
+                    class="w-full bg-dark-800 border border-white/[0.06] rounded-xl pl-10 pr-10 py-3 text-sm text-white placeholder-neutral-500 outline-none search-glow transition-all duration-200"
+                >
+                <button id="clearBtn" onclick="limpiarBusqueda()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neon-pinkLight transition-colors cursor-pointer">
+                    <iconify-icon icon="mdi:close-circle" class="text-lg"></iconify-icon>
+                </button>
+            </div>
+        </section>
+
+        <!-- Filter Tabs -->
+        <section class="flex justify-center gap-2 mb-8">
+            <button onclick="setFilter('todos')" id="filterTodos" class="filter-btn filter-active px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer border">
+                Todos (31)
+            </button>
+            <button onclick="setFilter('activos')" id="filterActivos" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer bg-dark-700 text-neutral-400 border border-white/[0.04] hover:border-white/10">
+                Participantes (28)
+            </button>
+            <button onclick="setFilter('inactivos')" id="filterInactivos" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer bg-dark-700 text-neutral-400 border border-white/[0.04] hover:border-white/10">
+                No participan (3)
+            </button>
+        </section>
+
+        <!-- Cards Grid -->
+        <section id="cardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"></section>
+
+        <!-- No Results -->
+        <div id="noResults" class="hidden no-results text-center py-16">
+            <iconify-icon icon="mdi:account-search" class="text-5xl text-neutral-700 mb-4"></iconify-icon>
+            <p class="text-neutral-400 font-semibold">No se encontraron resultados</p>
+            <p class="text-neutral-600 text-sm mt-1">Intenta con otro nombre o ID</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/[0.04] py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-neutral-600 text-xs">Squad Likes — Grupo WhatsApp</p>
+            <div class="flex items-center gap-2">
+                <iconify-icon icon="mdi:whatsapp" class="text-neon-pinkLight/40 text-lg"></iconify-icon>
+                <span class="text-neutral-600 text-xs">IDs recopilados del grupo</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Floating Button -->
+    <button onclick="copiarTodos()" class="sm:hidden fixed bottom-6 left-6 z-40 w-14 h-14 float-btn rounded-2xl flex items-center justify-center active:scale-95 transition-transform cursor-pointer">
+        <iconify-icon icon="mdi:content-copy" class="text-white text-xl"></iconify-icon>
+    </button>
+
+<script>
+const miembros = [
+    { num: 1, nombre: "ИATㅤCRAЖEЯA", telefono: "+52 81 260 500 79", id: "237689552", activo: true },
+    { num: 2, nombre: "Alessitaaㅤ₰", telefono: "+52 81 1788 8629", id: "1028914067", activo: true },
+    { num: 3, nombre: "ჯჯㅤßΞＮＩΛＮＯ", telefono: "+591 72828348", id: "482287481", activo: true },
+    { num: 4, nombre: "ㅤLИㅤMaddy!", telefono: "+54 9 387 576-3919", id: "307721337", activo: true },
+    { num: 5, nombre: "Gaaston'", telefono: "+54 9 2477 50-6748", id: "13051414", activo: true },
+    { num: 6, nombre: "U$SER", telefono: "+1 (269) 286-2904", id: "1839194943", activo: true },
+    { num: 7, nombre: "Karol g", telefono: "+52 877 116 3778", id: "9176025655", activo: true },
+    { num: 8, nombre: "⠑⠍⠊⠇⠊⠁✧.*•", telefono: "+56 9 9421 5848", id: "302083834", activo: true },
+    { num: 9, nombre: "ㅤkckbuttøwski", telefono: "+51 932 215 308", id: "891489339", activo: true },
+    { num: 10, nombre: "ㅤCrydannn", telefono: "+51 928 208 936", id: "604856361", activo: true },
+    { num: 11, nombre: "ʙʀʏᴀᴍ ᴘ ᴄᴛᴍ", telefono: "+51 989 037 773", id: "5561518480", activo: true },
+    { num: 12, nombre: "Mendoza $_$", telefono: "+52 311 373 1853", id: "501348500", activo: true },
+    { num: 13, nombre: "ᴍᴀᴛʜɪᴀsㅤ〆", telefono: "+57 301 3532902", id: "867581043", activo: true },
+    { num: 14, nombre: "xManobal", telefono: "+52 746 113 9783", id: "4704996441", activo: true },
+    { num: 15, nombre: "FIX Marcos", telefono: "+593 98 519 1366", id: "1821061061", activo: true },
+    { num: 16, nombre: "ᴮᴳㅤFufiㅤʚɞ", telefono: "+51 929 543 213", id: "2138614483", activo: true },
+    { num: 17, nombre: "¿ᴋɪʟʟᴇʀ.ᴇxᴇ?", telefono: "+57 320 8576432", id: "629940372", activo: true },
+    { num: 18, nombre: "Sxㅤ┋ᴋɪɴɢㅤヅ", telefono: "+58 414-9190472", id: "2207548208", activo: true },
+    { num: 19, nombre: "И7ㅤCHRISS  あ", telefono: "+1 (612) 403-0386", id: "4829294057", activo: true },
+    { num: 20, nombre: "꧁Ъσห¡тคツ꧂ღ", telefono: "+51 939 804 920", id: "3170516432", activo: true },
+    { num: 21, nombre: "〆ㅤLifeㅤᴳᵒᵒᵈ", telefono: "+57 313 4336554", id: "1820390528", activo: true },
+    { num: 22, nombre: "EW BOOS⁵⁰⁵", telefono: "+505 8201 6589", id: "1038645360", activo: true },
+    { num: 23, nombre: "YER4xRIKc44R", telefono: "+52 664 115 9744", id: "878709090", activo: true },
+    { num: 24, nombre: "CHEVI YT OF", telefono: "+502 5732 2128", id: "7233564458", activo: true },
+    { num: 25, nombre: "S21' Yair30$", telefono: "+54 9 11 6249-6237", id: "820630749", activo: true },
+    { num: 26, nombre: "Postmalone", telefono: "+593 97 880 1383", id: "3598153913", activo: true },
+    { num: 27, nombre: "Fxck | 〆505", telefono: "+51 904 283 885", id: "4199767277", activo: true },
+    { num: 28, nombre: "Chino antrax", telefono: "+504 9911-6249", id: "6909228461", activo: true },
+    { num: 29, nombre: "HN MELVIN", telefono: "+504 9624-3435", id: null, activo: false },
+    { num: 30, nombre: "im' Yordan7¿", telefono: "+51 997 097 767", id: null, activo: false },
+    { num: 31, nombre: "ﾒƁคstịuﾒ", telefono: "+56 9 6424 1398", id: null, activo: false },
+];
+
+let currentFilter = 'todos';
+
+function renderCards(filteredMembers) {
+    const grid = document.getElementById('cardsGrid');
+    const noResults = document.getElementById('noResults');
+
+    if (filteredMembers.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+    }
+
+    noResults.classList.add('hidden');
+
+    grid.innerHTML = filteredMembers.map((m, i) => {
+        const delay = Math.min(i * 40, 600);
+        const inactiveClass = m.activo ? '' : 'card-inactive';
+        const borderClass = m.activo ? 'card-border' : 'card-border-inactive';
+
+        const idSection = m.activo ? `
+            <div class="flex items-center justify-between gap-2 mt-3">
+                <div class="flex items-center gap-2 min-w-0">
+                    <iconify-icon icon="mdi:identifier" class="id-label text-sm flex-shrink-0"></iconify-icon>
+                    <span class="id-text text-lg font-bold tracking-wider font-mono truncate">${m.id}</span>
+                </div>
+                <button onclick="copiarID('${m.id}', this)" class="copy-btn flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-neon-pinkLight text-[11px] font-bold cursor-pointer">
+                    <iconify-icon icon="mdi:content-copy" class="text-sm"></iconify-icon>
+                    Copiar
+                </button>
+            </div>
+        ` : `
+            <div class="flex items-center gap-2 mt-3 px-3 py-2 bg-red-500/5 border border-red-500/10 rounded-lg">
+                <iconify-icon icon="mdi:cancel" class="text-red-500/50 text-sm"></iconify-icon>
+                <span class="text-xs font-semibold text-red-400/60">No participó</span>
+            </div>
+        `;
+
+        return `
+            <div class="animate-card ${inactiveClass} bg-dark-800/80 ${borderClass} rounded-2xl p-4 sm:p-5 transition-all duration-300 card-glow" style="animation-delay: ${delay}ms" data-nombre="${m.nombre.toLowerCase()}" data-id="${m.id || ''}" data-activo="${m.activo}">
+                <div class="flex items-start justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-10 h-10 rounded-xl ${m.activo ? 'num-badge' : 'num-badge-inactive'} flex items-center justify-center flex-shrink-0">
+                            <span class="text-sm font-black ${m.activo ? 'text-neon-pinkLight' : 'text-neutral-600'}">${m.num}</span>
+                        </div>
+                        <div class="min-w-0">
+                            <h3 class="text-sm font-bold text-white truncate leading-tight">${m.nombre}</h3>
+                            <div class="flex items-center gap-1.5 mt-1">
+                                <iconify-icon icon="mdi:phone" class="text-neutral-600 text-[11px]"></iconify-icon>
+                                <span class="text-[11px] text-neutral-500 font-mono truncate">${m.telefono}</span>
+                            </div>
+                        </div>
+                    </div>
+                    ${m.activo
+                        ? '<div class="flex-shrink-0 w-2 h-2 rounded-full mt-2 pulse-neon" style="background:#ff2d78;"></div>'
+                        : '<div class="flex-shrink-0 w-2 h-2 bg-red-500/30 rounded-full mt-2"></div>'
+                    }
+                </div>
+                ${idSection}
+            </div>
+        `;
+    }).join('');
+}
+
+function copiarID(id, btnElement) {
+    navigator.clipboard.writeText(id).then(() => {
+        const originalHTML = btnElement.innerHTML;
+        btnElement.innerHTML = '<iconify-icon icon="mdi:check" class="text-sm"></iconify-icon> ¡Copiado!';
+        btnElement.classList.add('copy-btn-copied');
+
+        const card = btnElement.closest('[data-nombre]');
+        if (card) {
+            card.classList.add('copied-flash');
+            setTimeout(() => card.classList.remove('copied-flash'), 400);
+        }
+
+        setTimeout(() => {
+            btnElement.innerHTML = originalHTML;
+            btnElement.classList.remove('copy-btn-copied');
+        }, 1500);
+
+        showToast(`ID ${id} copiado ✓`, 'success');
+    }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = id;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast(`ID ${id} copiado ✓`, 'success');
+    });
+}
+
+function copiarTodos() {
+    const ids = miembros.filter(m => m.activo).map(m => m.id).join('\n');
+    navigator.clipboard.writeText(ids).then(() => {
+        showToast('28 IDs copiados al portapapeles ✓', 'success');
+    }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = ids;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast('28 IDs copiados al portapapeles ✓', 'success');
+    });
+}
+
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+
+    toast.className = 'toast-enter pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl backdrop-blur-xl shadow-2xl max-w-sm';
+    toast.style.cssText = 'background: linear-gradient(135deg, rgba(255,45,120,0.12), rgba(255,215,0,0.08)); border: 1px solid rgba(255,45,120,0.2); color: #ff6eb4;';
+
+    toast.innerHTML = `
+        <iconify-icon icon="mdi:check-circle" class="text-lg flex-shrink-0" style="color:#ffd700;"></iconify-icon>
+        <span class="text-xs font-semibold">${message}</span>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.remove('toast-enter');
+        toast.classList.add('toast-exit');
+        setTimeout(() => toast.remove(), 300);
+    }, 2500);
+}
+
+function filtrarMiembros() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    const clearBtn = document.getElementById('clearBtn');
+
+    clearBtn.classList.toggle('hidden', query === '');
+
+    const filtered = miembros.filter(m => {
+        const matchSearch = query === '' ||
+            m.nombre.toLowerCase().includes(query) ||
+            (m.id && m.id.includes(query)) ||
+            m.telefono.includes(query);
+
+        const matchFilter =
+            currentFilter === 'todos' ||
+            (currentFilter === 'activos' && m.activo) ||
+            (currentFilter === 'inactivos' && !m.activo);
+
+        return matchSearch && matchFilter;
+    });
+
+    renderCards(filtered);
+}
+
+function limpiarBusqueda() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('clearBtn').classList.add('hidden');
+    filtrarMiembros();
+}
+
+function setFilter(filter) {
+    currentFilter = filter;
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('filter-active');
+        btn.classList.add('bg-dark-700', 'text-neutral-400');
+        btn.style.borderColor = 'rgba(255,255,255,0.04)';
+    });
+
+    const id = 'filter' + filter.charAt(0).toUpperCase() + filter.slice(1);
+    const activeBtn = document.getElementById(id);
+    activeBtn.classList.add('filter-active');
+    activeBtn.classList.remove('bg-dark-700', 'text-neutral-400');
+
+    filtrarMiembros();
+}
+
+renderCards(miembros);
+</script>
+
+</body>
+</html>
